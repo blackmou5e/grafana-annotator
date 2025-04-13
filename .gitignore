@@ -4,3 +4,4 @@ bin/
 .vscode/
 *.log
 coverage.out
+config.yaml
