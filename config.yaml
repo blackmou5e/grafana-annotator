@@ -1,0 +1,5 @@
+grafana_host: localhost
+grafana_port: 3000
+sa_token: test
+debug: false
+timeout: 30
