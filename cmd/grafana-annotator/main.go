@@ -85,7 +85,7 @@ func runAnnotate(cmd *cobra.Command, args []string) {
 		time.Duration(cfg.Timeout)*time.Second)
 	defer cancel()
 
-	grafanaURL := fmt.Sprintf("http://%s:%s/api", cfg.GrafanaHost, cfg.GrafanaPort)
+	grafanaURL := fmt.Sprintf("https://%s:%s/api", cfg.GrafanaHost, cfg.GrafanaPort)
 
 	var client grafana.GrafanaClient = grafana.NewClient(
 		grafanaURL,
