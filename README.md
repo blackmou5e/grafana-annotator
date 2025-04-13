@@ -5,7 +5,8 @@ A command-line tool for creating annotations across multiple Grafana dashboards 
 ## Installation
 
 ```bash
-go install github.com/your-username/grafana-annotator/cmd/grafana-annotator@latest
+git clone git@github.com:blackmou5e/grafana-annotator.git
+make build
 ```
 
 ## Configuration
@@ -31,7 +32,3 @@ View version information:
 ```bash
 grafana-annotator version
 ```
-
-## License
-
-MIT
