@@ -11,15 +11,28 @@ make build
 
 ## Configuration
 
-Create a configuration file at `$HOME/.gf-annotator/config.yaml` or in the current directory:
+Create a configuration file at one of this paths:
+* `$HOME/.gf-annotator/config.yaml`
+* `$XDG_CONFIG_HOME/grafana-annotator/config.yaml`
+* `./grafana_annotator.yaml`
+
 
 ```yaml
-grafana_host: "localhost"
-grafana_port: "3000"
-sa_token: "your-token-here"
-debug: false
-timeout: 30
+annotator_grafana_url: "http://localhost:3000"
+annotator_sa_token: "your-token-here"
+annotator_debug: false
+annotator_timeout: 30
 ```
+
+Or use environment variables:
+```bash
+export ANNOTATOR_GRAFANA_URL='http://localhost:3000'
+export ANNOTATOR_SA_TOKEN='your-token-here'
+export ANNOTATOR_DEBUG=false
+export ANNOTATOR_TIMEOUT=30
+```
+
+In both examples above, grafana url, debug and timeout are default values, that will be used if no config provided.
 
 ## Usage
 

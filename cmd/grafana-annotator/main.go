@@ -43,10 +43,19 @@ var annotateCmd = &cobra.Command{
 	Use:   "create",
 	Short: "Create annotations in Grafana dashboards",
 	PreRun: func(cmd *cobra.Command, args []string) {
-		var err error
-		cfg, err = config.LoadConfig()
+		cfg, err := config.SetDefaultConfig()
 		if err != nil {
-			log.Fatalf("Failed to load config: %v", err)
+			log.Printf("Failed to set default config values: %v", err)
+		}
+
+		err = config.LoadConfigFromFile(cfg)
+		if err != nil {
+			log.Printf("Failed to load config: %v", err)
+		}
+
+		err = config.LoadConfigFromEnv(cfg)
+		if err != nil {
+			log.Printf("Failed to read config from env: %v", err)
 		}
 
 		if cfg.Debug {
@@ -85,10 +94,8 @@ func runAnnotate(cmd *cobra.Command, args []string) {
 		time.Duration(cfg.Timeout)*time.Second)
 	defer cancel()
 
-	grafanaURL := fmt.Sprintf("https://%s:%s/api", cfg.GrafanaHost, cfg.GrafanaPort)
-
 	var client grafana.GrafanaClient = grafana.NewClient(
-		grafanaURL,
+		cfg.GrafanaURL,
 		cfg.GrafanaServiceAccountToken,
 		time.Duration(cfg.Timeout)*time.Second,
 	)
